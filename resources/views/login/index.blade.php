@@ -66,14 +66,16 @@
                                 <div class="card-title py-2">
                                     <h3 class="text-center">Info Siswa Hasil Profile Matching</h3>
                                 </div>
+								<form action="#" method="GET">
                                 <div class="row mx-3 py-3">
                                     <div class="col-md-4">
-                                        <input name="search" type="text" class="form-control form-control-sm" placeholder="Search">
+                                        <input name="search" type="text" class="form-control form-control-sm" placeholder="cari nama siswa" value="{{ request('search') }}">
                                     </div>
                                     <div class="col-md-6">
-                                        <button class="btn btn-sm btn-primary">Cari</button>
+                                        <button type="submit" class="btn btn-sm btn-primary">Cari</button>
                                     </div>
                                 </div>
+								</form>
                                 <div class="card-body">
                                     <table class="table">
                                         <tr>
@@ -84,8 +86,8 @@
 										@forelse ($hasilRekomendasi as $data)
 										<tr>
 											<td>{{ $no++ }}</td>
-                                            <td>{{ $data->siswa->nama }}</td>
-											<td>{{ $data->jurusan->nama }}</td>
+                                            <td>{{ $data->nama_siswa }}</td>
+											<td>{{ $data->nama_jurusan }}</td>
                                         </tr>
 										@empty
 											<tr>

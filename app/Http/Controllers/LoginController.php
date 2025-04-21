@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hasilRekomendasi;
 use App\Models\Rekomendasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        // pencarian data siswa hasil rekomendasi
+
+        if($request->has('search')){
+            $hasilRekomendasi = hasilRekomendasi::where('nama_siswa', 'like', '%'.$request->search.'%')->get();
+        } else {
+            $hasilRekomendasi = hasilRekomendasi::all();
+        }
         $no=1;
-        $hasilRekomendasi = Rekomendasi::where('ranking',1)->get();
+        // $hasilRekomendasi = Rekomendasi::where('ranking',1)->get();
         return view('login.index', compact('no','hasilRekomendasi'));
         
     }
